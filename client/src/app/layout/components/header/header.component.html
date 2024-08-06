@@ -1,0 +1,46 @@
+<section>
+  <nav class="navbar navbar-expand-md fixed-top bg-body border rounded-0">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/dashboard" routerLinkActive="active">
+        <img alt="" class="d-inline-block align-text-top" src="assets/logos/logo-dark.png" width="140">
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+      </ul>
+      <ul *appHasRole="['Administrator']" class="navbar-nav">
+        <li class="nav-item" ngbDropdown>
+          <a [class.active]="router.isActive('/admin', false)" class="nav-link" ngbDropdownToggle role="button"
+             tabindex="0">Admin</a>
+          <div class="dropdown-menu" ngbDropdownMenu><a ngbDropdownItem routerLink="/admin/users">
+            <i class="fa fa-users text-black-50 me-2 align-middle"></i>
+            <span class="align-middle">Users</span>
+          </a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link" ngbDropdownToggle role="button" tabindex="0"> {{user.firstName + ' ' + user.lastName}}
+          </a>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <a (click)="myProfile()" href="javascript:void(0);" ngbDropdownItem>
+              <i class="fa fa-user text-black-50 me-2 align-middle"></i>
+              <span class="align-middle">My Profile</span>
+            </a>
+            <a (click)="changePassword()" href="javascript:void(0);" ngbDropdownItem>
+              <i class="fa fa-lock text-black-50 me-2 align-middle"></i>
+              <span class="align-middle">Change Password</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a (click)="logout()" href="javascript:void(0);" ngbDropdownItem>
+              <i class="fa fa-power-off text-black-50 me-2 align-middle"></i>
+              <span class="align-middle">Logout</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</section>

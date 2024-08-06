@@ -1,0 +1,23 @@
+<div>
+  <input class="form-control" type="{{type}}" placeholder="{{label}}"  [class.is-invalid]="ngControl.touched && ngControl.invalid"
+         mask="{{ngxMask}}" [formControl]="ngControl.control"/>
+  <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">
+    {{label}} is required
+  </div>
+  <div *ngIf="ngControl.control.errors?.email" class="invalid-feedback">
+    {{label}} not valid
+  </div>
+  <div *ngIf="ngControl.control.errors?.minlength" class="invalid-feedback">
+    {{label}} must be at least {{ngControl.control.errors.minlength['requiredLength']}} characters
+  </div>
+  <div *ngIf="ngControl.control.errors?.maxlength" class="invalid-feedback">
+    {{label}} must be at most {{ngControl.control.errors.maxlength['requiredLength']}} characters
+  </div>
+  <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">
+    Passwords do not match
+  </div>
+  <div *ngIf="ngControl.control.errors?.pattern" class="invalid-feedback">
+    Password requires at least 1 lowercase character, 1 uppercase character, 1 number, 1 non-alphanumeric character
+    and must be at least 8 characters
+  </div>
+</div>

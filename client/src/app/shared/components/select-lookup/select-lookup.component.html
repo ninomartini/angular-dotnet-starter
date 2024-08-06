@@ -1,0 +1,18 @@
+<div class="row mb-3">
+  <div class="col-md-3">
+    <label class="col-form-label">{{label}}</label>
+    <span *ngIf="ngControl.control.errors?.required" class="text-danger"> * </span>
+  </div>
+  <div class="col-md-9">
+    <select [class.is-invalid]="ngControl.touched && ngControl.invalid"
+            [formControl]="ngControl.control"
+            class="form-select">
+      <option [ngValue]="null"></option>
+      <option *ngFor="let item of items ; index as i"
+              [ngValue]="item[lookupValue]">{{items[i][lookupLabel]}}</option>
+    </select>
+    <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">
+      {{label}} is required
+    </div>
+  </div>
+</div>

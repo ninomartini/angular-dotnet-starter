@@ -1,0 +1,60 @@
+<section>
+  <div class="container container-wrapper">
+    <div class="card p-2">
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col">
+            <div *ngIf="user.id === ''">
+              <h3>Add User</h3>
+            </div>
+            <div *ngIf="user.id !== ''">
+              <h3>Edit User<span class="fs-4 text-muted"> / {{user.userName}}</span></h3>
+            </div>
+            <hr/>
+          </div>
+        </div>
+        <form id="form" [formGroup]="form" (ngSubmit)="save()" autocomplete="off" validateOnSubmit>
+          <div *ngIf="validationErrors.length > 0">
+            <div *ngIf="validationErrors.length > 0">
+              <div class="alert alert-danger">
+                <h6>Validation Errors</h6>
+                {{validationErrors | json}}
+              </div>
+            </div>
+          </div>
+          <app-text-input [label]="'Username'" [formControlName]="'userName'"></app-text-input>
+          <app-text-input [label]="'First Name'" [formControlName]="'firstName'"></app-text-input>
+          <app-text-input [label]="'Last Name'" [formControlName]="'lastName'"></app-text-input>
+          <app-text-input [label]="'Email'" [formControlName]="'email'"></app-text-input>
+          <app-text-input [label]="'Phone'" [formControlName]="'phoneNumber'"
+                          [ngxMask]="'(000) 000-0000'"></app-text-input>
+          <div *ngIf="user.id === ''">
+            <app-text-input [label]="'Password'" [type]="'password'" [formControlName]="'password'"></app-text-input>
+            <app-text-input [label]="'Confirm Password'" [type]="'password'"
+                            [formControlName]="'confirmPassword'"></app-text-input>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label class="col-form-label">Roles</label>
+            </div>
+            <div class="col-md-9 mt-2">
+              <div *ngFor="let role of roles">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="role.name" [checked]="role.checked"
+                         (change)="role.checked = !role.checked"/>
+                  <label class="form-check-label">{{role.name}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-end">
+              <button class="btn btn-primary me-2" type="submit">Save</button>
+              <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

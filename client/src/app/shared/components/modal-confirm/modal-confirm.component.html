@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+    {{title}}<br>
+    <small *ngIf="subTitle != ''" class="text-muted">{{subTitle}}</small>
+  </h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close('decline')"></button>
+</div>
+
+<div class="modal-body">
+  <span *ngIf="message !== ''">{{message}} <span *ngIf="messageRaw !== ''"><strong>{{messageRaw}}</strong></span></span>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="{{btnOkClass}}" (click)="close('btnConfirm')">
+    {{btnOkText}}
+  </button>
+  <button type="button" class="{{btnCancelClass}}" (click)="close('btnDecline')">
+    {{btnCancelText}}
+  </button>
+</div>

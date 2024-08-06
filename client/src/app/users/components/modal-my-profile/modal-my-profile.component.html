@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h4 class="modal-title">My Profile</h4>
+  <button type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="close('btnX')"></button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="save()"
+        [formGroup]="myProfileForm"
+        autocomplete="off"
+        id="myProfileForm"
+        validateOnSubmit>
+    <!-- Validation errors -->
+    <div *ngIf="validationErrors.length > 0">
+      <div class="alert alert-danger">
+        <h6>Validation Errors</h6>
+        {{validationErrors | json}}
+      </div>
+    </div>
+    <div class="form-floating mt-2 mb-3">
+      <input type="text"
+             class="form-control"
+             id="firstName"
+             placeholder="First Name"
+             formControlName="firstName">
+      <label for="firstName">First Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text"
+             class="form-control"
+             id="lastName"
+             placeholder="First Name"
+             formControlName="lastName">
+      <label for="lastName">Last Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text"
+             class="form-control"
+             id="email"
+             placeholder="Email"
+             formControlName="email"
+             readonly>
+      <label for="email">Email</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input type="text"
+             class="form-control"
+             id="phoneNumber"
+             placeholder="Phone Number"
+             formControlName="phoneNumber"
+             mask="(000) 000-0000">
+      <label for="phoneNumber">Phone Number</label>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-outline-secondary"
+          (click)="close('btnCancel')">Cancel
+  </button>
+  <button type="submit"
+          class="btn btn-primary"
+          form="myProfileForm">Save
+  </button>
+</div>
